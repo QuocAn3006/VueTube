@@ -2,6 +2,7 @@
 import { RouterView } from "vue-router";
 import { localDB } from "./utils/localDB";
 import NavBar from "./components/NavBar.vue";
+import { supabase } from "./constants/supabase";
 import {
   NLoadingBarProvider,
   darkTheme,
@@ -27,6 +28,13 @@ const themeOverrides = {
 onMounted(() => {
   const { init } = localDB();
   init();
+  supabase.auth.getSession().then(({ data }) => {
+    session.value = data.session;
+  });
+
+  supabase.auth.onAuthStateChange((_, _session) => {
+    session.value = _session;
+  });
 });
 </script>
 
