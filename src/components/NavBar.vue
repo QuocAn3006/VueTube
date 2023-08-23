@@ -33,7 +33,7 @@
           </label>
 
           <ul
-            class="absolute top-14 left-[50%] py-3 text-sm bg-white translate-x-[-58%]"
+            class="absolute top-14 left-[50%] py-3 text-sm bg-white translate-x-[-38%]"
             v-show="isShowsuggest && suggestOptions.length"
           >
             <li
