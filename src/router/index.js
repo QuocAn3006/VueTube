@@ -15,10 +15,6 @@ const router = createRouter({
       path: "/search",
       component: () => import("../components/Search/index.vue"),
     },
-    {
-      path: "/logout",
-      component: () => import("../components/Logout.vue"),
-    },
   ],
 });
 
