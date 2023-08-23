@@ -3,7 +3,7 @@
     <div class="max-w-[1440px] mt-0 mx-auto">
       <template v-if="Object.keys(video).length">
         <div class="grid grid-cols-12 gap-x-12 gap-y-0">
-          <div class="lg:col-span-8 sm:col-span-full">
+          <div class="lg:col-span-8 col-span-full">
             <template v-if="video.title">
               <main-video :video="video"></main-video>
             </template>
@@ -16,7 +16,7 @@
             </div>
           </div>
 
-          <div class="lg:col-span-4 sm:col-span-full">
+          <div class="lg:col-span-4 col-span-full">
             <related-video
               :relatedVideos="video.relatedStreams"
             ></related-video>

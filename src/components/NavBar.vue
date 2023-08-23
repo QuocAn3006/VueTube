@@ -2,55 +2,64 @@
   <div
     class="fixed h-14 bg-bg-nav w-full flex items-center justify-between py-[10px] px-[32px] z-[99]"
   >
-    <div class="flex hover:cursor-pointer" @click="router.push('/')">
+    <div class="flex flex-wrap hover:cursor-pointer">
       <font-awesome-icon
         :icon="['fas', 'bars']"
         class="text-[#40aa7f] text-2xl"
         @click="activate('left')"
       />
-      <div class="text-xl flex items-center pl-6">
+      <div
+        class="hidden text-xl sm:flex items-center pl-6"
+        @click="router.push('/')"
+      >
         <img src="/favicon.ico" alt="logo" class="w-7" />
         <span class="text-[#40aa7f] font-semibold">ueTube</span>
       </div>
     </div>
 
-    <div class="lg:flex justify-between items-center">
-      <form action="" @submit.prevent="handleRedirectSearch(queryString)">
-        <div class="h-[34px] bg-white px-4 rounded w-[300px] flex items-center">
-          <label for="search">
-            <input
-              type="text"
-              placeholder="Search"
-              class="text-black border-none outline-none"
-              v-model="queryString"
-              @input="handleQuerreSuggest"
-              @focus="handleQuerreSuggest"
-              @blur="isShowsuggest = false"
-            />
-            <span class="icon-search pl-20">
+    <form action="" @submit.prevent="handleRedirectSearch(queryString)">
+      <div class="max-w-md mx-rounded-lg overflow-hidden md:max-w-xl">
+        <div class="md:flex">
+          <div class="w-full p-3">
+            <div class="relative">
+              <span class="absolute top-3 left-4 flex justify-center">
+                <font-awesome-icon
+                  :icon="['fas', 'magnifying-glass']"
+                  size="lg"
+                />
+              </span>
+              <input
+                type="text"
+                placeholder="Search"
+                class="text-black bg-white h-10 w-full px-12 rounded-lg focus:outline-none hover:cursor-pointer"
+                v-model="queryString"
+                @input="handleQuerreSuggest"
+                @focus="handleQuerreSuggest"
+                @blur="isShowsuggest = false"
+              />
+            </div>
+          </div>
+        </div>
+
+        <ul
+          class="absolute top-14 left-[50%] py-3 text-sm bg-white translate-x-[-38%]"
+          v-show="isShowsuggest && suggestOptions.length"
+        >
+          <li
+            class="px-[10px] py-[8px] flex justify-start w-[300px] hover:bg-slate-300 hover:cursor-pointer"
+            v-for="suggest in suggestOptions"
+            :key="suggest"
+            @mousedown="handleRedirectSearch(suggest)"
+          >
+            <span class="icon-search mr-4">
               <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
             </span>
-          </label>
+            <span>{{ suggest }}</span>
+          </li>
+        </ul>
+      </div>
+    </form>
 
-          <ul
-            class="absolute top-14 left-[50%] py-3 text-sm bg-white translate-x-[-38%]"
-            v-show="isShowsuggest && suggestOptions.length"
-          >
-            <li
-              class="px-[10px] py-[8px] flex justify-start w-[300px] hover:bg-slate-300 hover:cursor-pointer"
-              v-for="suggest in suggestOptions"
-              :key="suggest"
-              @mousedown="handleRedirectSearch(suggest)"
-            >
-              <span class="icon-search mr-4">
-                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-              </span>
-              <span>{{ suggest }}</span>
-            </li>
-          </ul>
-        </div>
-      </form>
-    </div>
     <div class="flex items-center justify-center">
       <template v-if="user">
         <div
@@ -89,7 +98,7 @@
         </button>
       </template>
     </div>
-    <n-drawer v-model:show="active" :width="502" :placement="placement">
+    <n-drawer v-model:show="active" :width="302" :placement="placement">
       <n-drawer-content>
         <div class="flex text-2xl">
           <img src="/favicon.ico" alt="logo" class="w-7" />

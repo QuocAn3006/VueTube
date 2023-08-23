@@ -23,7 +23,7 @@
       <h1 class="text-xl font-semibold">{{ video.title }}</h1>
     </div>
 
-    <div class="flex justify-between items-center mt-4">
+    <div class="flex flex-wrap justify-between items-center mt-4">
       <div class="flex items-center">
         <div>
           <img :src="video.uploaderAvatar" alt="" class="rounded-full" />
@@ -41,17 +41,17 @@
         >
           <button>Đăng kí</button>
         </div>
-      </div>
 
-      <div class="flex">
-        <div class="p-3 bg-slate-100 rounded-xl text-base mr-2">
-          <span class="mr-2">{{ formatViews(video.likes) }}</span>
-          <font-awesome-icon :icon="['fas', 'thumbs-up']" />
-        </div>
+        <div class="flex ml-3">
+          <div class="p-3 bg-slate-100 rounded-xl text-base mr-2">
+            <span class="mr-2">{{ formatViews(video.likes) }}</span>
+            <font-awesome-icon :icon="['fas', 'thumbs-up']" />
+          </div>
 
-        <div class="p-3 bg-slate-100 rounded-xl text-base">
-          <span class="mr-2">{{ formatViews(video.dislikes) }}</span>
-          <font-awesome-icon :icon="['fas', 'thumbs-down']" />
+          <div class="p-3 bg-slate-100 rounded-xl text-base">
+            <span class="mr-2">{{ formatViews(video.dislikes) }}</span>
+            <font-awesome-icon :icon="['fas', 'thumbs-down']" />
+          </div>
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <span>{{ video.uploadDate?.split("-").reverse().join("-") }}</span>
     </div>
 
-    <div class="mt-4 bg-slate-100 p-4">
+    <div class="mt-4 bg-slate-100 p-4 flex flex-wrap">
       <n-collapse arrow-placement="right" :style="{ color: '#000' }">
         <n-collapse-item title="Show more" :style="{ color: '#000' }">
           <span v-html="renderHTML(video.description)" />

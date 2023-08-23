@@ -11,7 +11,7 @@
           <img :src="comment.thumbnail" alt="" class="rounded-full" />
         </div>
       </div>
-      <div class="flex flex-col ml-4">
+      <div class="flex flex-col ml-4 flex-wrap">
         <template v-if="comment.pined">
           <div class="text-center mb-1">
             <font-awesome-icon :icon="['fas', 'thumbtack']" />
